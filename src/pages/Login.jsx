@@ -60,8 +60,8 @@ export default function Login() {
     window.location.href = "/old/index.html";
   };
 
-  return (
-    <main className="grid grid-cols-1 md:grid-cols-2 w-full h-screen font-sans">
+  function AsideLeft () {
+    return (
       <aside className="relative hidden md:flex flex-col justify-between w-full h-full p-12 bg-[#193CB8]">
         {<Logo />}
         <div className="z-10 flex flex-col gap-4">
@@ -70,6 +70,16 @@ export default function Login() {
         </div>
         <BannerFooter/>
       </aside>
+    )
+  }
+
+  const AsideRight = (
+    
+  )
+
+  return (
+    <main className="grid grid-cols-1 md:grid-cols-2 w-full h-screen font-sans">
+      {<AsideLeft />}
 
       <aside className="flex p-[10px] md:p-[20%] items-center">
         <div className="flex flex-col w-full gap-8 m-auto">
