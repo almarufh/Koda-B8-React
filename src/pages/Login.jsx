@@ -1,5 +1,9 @@
 import { useState, useEffect } from 'react';
 import InputField from '../components/auth/InputField.jsx';
+import Logo from '../components/auth/Logo.jsx'
+import ButtonAccount from '../components/auth/ButtonAccount.jsx';
+import HeaderAuth from '../components/auth/HeaderAuth.jsx';
+import Line from '../components/auth/Line.jsx';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -56,10 +60,7 @@ export default function Login() {
   return (
     <main className="grid grid-cols-1 md:grid-cols-2 w-full h-screen font-sans">
       <aside className="relative hidden md:flex flex-col justify-between w-full h-full p-12 bg-[#193CB8]">
-        <div className="z-10 flex gap-3 items-center">
-            <span className="flex justify-center items-center bg-[#FFFFFF33] rounded-[12px] px-3 py-2 text-[12px] text-white">B</span>
-            <span className="text-[16px] text-white font-medium">BeliMudah</span>
-        </div>
+        {<Logo />}
         <div className="z-10 flex flex-col gap-4">
             <span className="font-bold text-[32px] text-white">Belanja lebih<br />mudah, hidup lebih<br />praktis</span>
             <span className="text-[16px] text-[#FFFFFFB2]">Ribuan produk pilihan dengan harga<br />terbaik, pengiriman cepat, dan<br />pembayaran yang aman.</span>
@@ -69,24 +70,17 @@ export default function Login() {
 
       <aside className="flex p-[10px] md:p-[20%] items-center">
         <div className="flex flex-col w-full gap-8 m-auto">
-          <div className="flex flex-col gap-1">
-            <span className="text-[24px] font-bold">Masuk ke Akun</span>
-            <div className="text-[16px] text-[#6B7280]">
-              <span>Belum punya akun? </span>
-              <a href="register.html" className="text-[#1A73E8]">Daftar gratis</a>
-            </div>
-          </div>
-          
+          {<HeaderAuth
+            Header="Masuk ke Akun"
+            SubHeader="Belum punya akun?"
+            SubHeaderLink="Daftar gratis"
+          />}          
           <div className="grid grid-cols-2 gap-3 text-[14px] font-medium text-[#6B7280]">
-            <button type="button" className="w-full border rounded-[12px] py-[12px]">Google</button>
-            <button type="button" className="w-full border rounded-[12px] py-[12px]">Facebook</button>
+            {<ButtonAccount result="Google"/>}
+            {<ButtonAccount result="Facebook"/>}
           </div>
 
-          <div className="grid grid-cols-[1fr_auto_1fr] gap-3 items-center w-full">
-            <div className="border-t border-[#0000001A]"></div>
-            <span className="text-[12px] text-[#6B7280]">atau masuk dengan email</span>
-            <div className="border-t border-[#0000001A]"></div>
-          </div>
+          {<Line line="atau masuk dengan email"/>}
 
           <form onSubmit={handleLogin} className="flex flex-col gap-5">
             <InputField
