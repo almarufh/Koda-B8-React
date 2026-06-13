@@ -7,7 +7,7 @@ function HeaderAuth (props) {
             <div className="text-[16px] text-[#6B7280] flex gap-1">
               <span>{props.SubHeader}</span>
               <Link 
-                href={props.src} 
+                to={props.Src} 
                 className="text-[#1A73E8]"
               >
                 {props.SubHeaderLink}
