@@ -74,14 +74,7 @@ export default function Login() {
   }
 
   const AsideRight = (
-    
-  )
-
-  return (
-    <main className="grid grid-cols-1 md:grid-cols-2 w-full h-screen font-sans">
-      {<AsideLeft />}
-
-      <aside className="flex p-[10px] md:p-[20%] items-center">
+    <aside className="flex p-[10px] md:p-[20%] items-center">
         <div className="flex flex-col w-full gap-8 m-auto">
           {<HeaderAuth
             Header="Masuk ke Akun"
@@ -128,6 +121,12 @@ export default function Login() {
             {<SyaratKebijakan first="Dengan masuk, kamu menyetujui" last="kami."/>}
         </div>
       </aside>
+  )
+
+  return (
+    <main className="grid grid-cols-1 md:grid-cols-2 w-full h-screen font-sans">
+      {<AsideLeft />}
+      {AsideRight}
     </main>
   );
 }
