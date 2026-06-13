@@ -62,8 +62,7 @@ export default function Login() {
 
 function AsideLeft () {
     return (
-      <aside className="relative hidden md:flex flex-col justify-between w-full h-full p-12 bg-[#193CB8]">
-        <img className='absolute inset-0 w-fit h-full object-cover bg-[#193CB8]' src="/assets/auth/login/Shopping.svg" alt="Shoping" />
+      <aside className="relative bg-[url(/assets/auth/login/Shopping.svg)] bg-cover bg-center hidden md:flex flex-col justify-between w-full h-full p-12 bg-[#193CB8]">
         {<Logo />}
         <div className="z-10 flex flex-col gap-4">
             <span className="font-bold text-[32px] text-white">Belanja lebih<br />mudah, hidup lebih<br />praktis</span>
