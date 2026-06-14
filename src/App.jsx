@@ -1,10 +1,14 @@
 import { RouterProvider, createBrowserRouter } from 'react-router';
 
-import Login from './pages/Login.jsx';
-import Register from './pages/Register.jsx';
-import Forgot from './pages/Forgot.jsx';
+import Login from './pages/auth/Login.jsx';
+import Register from './pages/auth/Register.jsx';
+import Forgot from './pages/auth/Forgot.jsx';
 
 const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Login />,
+  },
   {
     path: '/',
     element: <Login />,
