@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
-import InputField from '../components/auth/InputField.jsx';
-import Logo from '../components/auth/Logo.jsx'
-import ButtonAccount from '../components/auth/ButtonAccount.jsx';
-import HeaderAuth from '../components/auth/HeaderAuth.jsx';
-import Line from '../components/auth/Line.jsx';
-import BannerFooter from '../components/auth/BannerFooter.jsx';
-import Button from '../components/auth/Button.jsx';
-import SyaratKebijakan from '../components/auth/SyaratKebijakan.jsx'
+import InputField from '../../components/auth/InputField.jsx';
+import Logo from '../../components/auth/Logo.jsx'
+import ButtonAccount from '../../components/auth/ButtonAccount.jsx';
+import HeaderAuth from '../../components/auth/HeaderAuth.jsx';
+import Line from '../../components/auth/Line.jsx';
+import BannerFooter from '../../components/auth/BannerFooter.jsx';
+import Button from '../../components/auth/Button.jsx';
+import SyaratKebijakan from '../../components/auth/SyaratKebijakan.jsx'
 
 export default function Login() {
   const [email, setEmail] = useState('');
