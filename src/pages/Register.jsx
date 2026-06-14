@@ -101,7 +101,7 @@ function AsideLeft () {
             {<Button 
                 src="/assets/auth/register/pintu.svg" 
                 action="Daftar Sekarang" 
-                order="none"
+                order="1"
                 color="#F97316"/>
             }
 
