@@ -75,7 +75,7 @@ export default function Footer () {
     ];
 
     return (
-        <footer className="flex flex-col w-full max-w-[1728px] items-center border mx-auto">
+        <footer className="flex flex-col w-full max-w-[1728px] items-center mx-auto">
             <div className="w-full h-16"></div>
             <div className="flex items-center justify-center w-full bg-[#111827]">
                 <div className="w-full max-w-[1280px] grid grid-cols-2 md:grid-cols-4 p-[32px_16px] gap-6">
