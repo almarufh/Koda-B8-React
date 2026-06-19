@@ -1,20 +1,54 @@
-import { useState } from 'react';
+import React from 'react';
+import { 
+  useNavigate, 
+  useLocation 
+} from 'react-router';
 import InputField from '../../components/auth/InputField.jsx';
 import ButtonAccount from '../../components/auth/ButtonAccount.jsx';
-import HeaderAuth from '../../components/auth/HeaderAuth.jsx';
 import Line from '../../components/auth/Line.jsx';
 import Button from '../../components/auth/Button.jsx';
 import SyaratKebijakan from '../../components/auth/SyaratKebijakan.jsx';
 
 export default function Register() {
-  const [namaLengkap, setNamaLengkap] = useState('');
-  const [email, setEmail] = useState('');
-  const [sandi, setSandi] = useState('');
-  const [confirmSandi, setConfirmSandi] = useState('');
-  const [isAgree, setIsAgree] = useState(false);
+  const namaRef = React.useRef();
+  const emailRef = React.useRef();
+  const sandiRef = React.useRef();
+  const confirmSandiRef = React.useRef();
+  const agreeRef = React.useRef();
+  
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  React.useEffect(() => {
+    if (location.state?.namaLengkap) {
+      namaRef.current.value = location.state.namaLengkap;
+    }
+    if (location.state?.email) {
+      emailRef.current.value = location.state.email;
+    }
+    if (location.state?.sandi) {
+      sandiRef.current.value = location.state.sandi;
+    }
+  }, [location.state]);
+
+  const handleNavigate = (toUrl) => {
+    navigate(toUrl, {
+      state: {
+        namaLengkap: namaRef.current?.value || '',
+        email: emailRef.current?.value || '',
+        sandi: sandiRef.current?.value || ''
+      }
+    });
+  };
 
   const handleRegister = (e) => {
     e.preventDefault();
+    const namaLengkap = namaRef.current.value;
+    const email = emailRef.current.value;
+    const sandi = sandiRef.current.value;
+    const confirmSandi = confirmSandiRef.current.value;
+    const isAgree = agreeRef.current.checked;
+
     if (!namaLengkap || !email || !sandi || !confirmSandi) {
       alert("Semua field harus diisi!");
       return;
@@ -36,20 +70,27 @@ export default function Register() {
       return;
     }
 
-    users.push({ nama: namaLengkap, email, password: sandi });
+    users.push({ 
+      nama: namaLengkap, 
+      email, 
+      password: btoa(sandi)
+    });
     localStorage.setItem("users", JSON.stringify(users));
     alert("Pendaftaran Berhasil! Silakan login.");
-    window.location.href = "/auth/login";
+    navigate("/auth/login", { state: { email } });
   };
 
   return (
     <div className="flex flex-col w-full gap-8 m-auto">
-      <HeaderAuth
-        Header="Buat Akun Baru"
-        SubHeader="Sudah punya akun?"
-        SubHeaderLink="Masuk di sini"
-        Src="/auth/login"
-      />          
+      <div className="flex flex-col gap-2">
+        <h1 className="text-[28px] font-bold text-[#111827]">Buat Akun Baru</h1>
+        <p className="text-[14px] text-[#6B7280]">
+          Sudah punya akun?{' '}
+          <button onClick={() => handleNavigate('/auth/login')} className="text-[#1A73E8] font-medium hover:underline">
+            Masuk di sini
+          </button>
+        </p>
+      </div>          
       
       <div className="grid grid-cols-2 gap-3 text-[14px] font-medium text-[#6B7280]">
         <ButtonAccount result="Daftar via Google"/>
@@ -65,8 +106,7 @@ export default function Register() {
           name="NamaLengkap"
           type="text"
           placeholder="Nama lengkap kamu"
-          value={namaLengkap}
-          onChange={(e) => setNamaLengkap(e.target.value)}
+          ref={namaRef}
         />
 
         <InputField
@@ -75,8 +115,7 @@ export default function Register() {
           name="email"
           type="email"
           placeholder="email@contoh.com"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          ref={emailRef}
         />
 
         <InputField
@@ -85,8 +124,7 @@ export default function Register() {
           name="sandi"
           type="password"
           placeholder="Masuk kata sandi"
-          value={sandi}
-          onChange={(e) => setSandi(e.target.value)}
+          ref={sandiRef}
         />
 
         <InputField
@@ -95,26 +133,19 @@ export default function Register() {
           name="confirmSandi"
           type="password"
           placeholder="Masuk kata sandi"
-          value={confirmSandi}
-          onChange={(e) => setConfirmSandi(e.target.value)}
+          ref={confirmSandiRef}
         />
 
-        <div className="flex items-start gap-2 text-[14px]">
+        <div className="flex gap-2 text-[14px]">
           <input 
             type="checkbox" 
             name="time_access" 
-            checked={isAgree}
-            onChange={(e) => setIsAgree(e.target.checked)}
+            ref={agreeRef}
           />
           <SyaratKebijakan first="Saya menyetujui" last="BeliMudah"/>
         </div>
 
-        <Button 
-          src="/assets/auth/register/pintu.svg" 
-          action="Daftar Sekarang" 
-          order="1"
-          color="#F97316"
-        />
+        <Button src="/assets/auth/register/pintu.svg" action="Daftar Sekarang" order="1" color="#F97316"/>
       </form>
       
       <span className="self-center text-[12px] text-[#6B7280]">🔒 Data kamu aman dan terenkripsi</span>
