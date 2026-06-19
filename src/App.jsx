@@ -10,6 +10,7 @@ import Login from './pages/auth/Login.jsx';
 import Register from './pages/auth/Register.jsx';
 import Forgot from './pages/auth/Forgot.jsx';
 import LandingPage from './pages/main/LandingPage.jsx';
+import MainLayout from './pages/main/MainLayout.jsx';
 
 const router = createBrowserRouter([
   {
@@ -35,12 +36,22 @@ const router = createBrowserRouter([
     ]
   },
   {
-    path: '/',
-    element: <LandingPage />
+    path: '/main',
+    element: <MainLayout />,
+    children: [
+      {
+        index: true,
+        element: <Navigate to="landing-page" replace />
+      },
+      {
+        path: 'landing-page',
+        element: <LandingPage />
+      },
+    ]
   },
   {
     path: '*',
-    element: <Navigate to="/" replace />,
+    element: <Navigate to="/main/landing-page" replace />,
   }
 ]);
 

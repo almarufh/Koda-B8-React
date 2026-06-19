@@ -1,5 +1,6 @@
 import Logo from '../auth/Logo'
 import { Image } from '../../assets/index.js'
+import { Outlet } from 'react-router'
 
 export default function Header() {
     function Navimg (props) {
@@ -17,7 +18,7 @@ export default function Header() {
 
   return (
     <div className='flex flex-col width full max-w-432 mx-auto items-center'>
-        <div className="flex  items-center justify-center w-full max-w-432 bg-[#1A73E8]">
+        <div className="flex items-center justify-center w-full max-w-432 bg-[#1A73E8]">
             <div className='flex items-center justify-between w-full max-w-7xl pl-4 pr-4'>
                 <div className='flex items-center gap-1'>
                     <img
@@ -93,6 +94,9 @@ export default function Header() {
                 <Navimg img="🔥" text="Promo" style="promo" />
             </div>
         </div>
+        <main className='flex flex-col items-center w-full h-screen'>
+            <Outlet />
+        </main>
     </div>
   )
 }
