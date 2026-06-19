@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { Link } from 'react-router';
-import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import { 
+  FaRegEye, 
+  FaRegEyeSlash 
+} from "react-icons/fa";
 
 function InputField(props) {
   const [showPassword, setShowPassword] = useState(false);
@@ -46,6 +49,7 @@ function InputField(props) {
           value={props.value}
           onChange={props.onChange}
           autoComplete={props.type === "password" ? "current-password" : "on"}
+          ref={props.ref}
           required
         />
         {isPasswordType && (
