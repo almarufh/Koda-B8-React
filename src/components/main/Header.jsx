@@ -43,7 +43,7 @@ export default function Header() {
     }
 
   return (
-    <div className='sticky t-0 flex flex-col w-full items-center'>
+    <div className='sticky bg-white top-0 z-50 flex flex-col w-full items-center'>
         <div className="flex items-center justify-center w-full hidden md:flex bg-[#1A73E8]">
             <div className='flex items-center justify-between w-full md:w-[95%] xl:w-[90%] 2xl:w-[80%] pl-4 pr-4'>
                 <div className='flex items-center gap-1'>
