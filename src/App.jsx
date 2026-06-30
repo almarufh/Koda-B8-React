@@ -22,18 +22,18 @@ import StepThird from './pages/main/checkout/StepThird'
 import Succes from './pages/main/checkout/Succes'
 
 const router = createBrowserRouter([
-    // {
-    //     path: '/',
-    //     element: <Navigate to="/main" replace />
-    // },
+    {
+        path: '/',
+        element: <Navigate to="/main" replace />
+    },
     {
         path: '/auth',
         element: <AuthLayout />,
         children: [
-            // {
-            //     index: true,
-            //     element: <Navigate to='login' replace />
-            // },
+            {
+                index: true,
+                element: <Navigate to='login' replace />
+            },
             {
                 path: 'login',
                 element: <Login />
@@ -104,6 +104,10 @@ const router = createBrowserRouter([
                 path: 'checkout',
                 element: <CheckoutLayout />,
                 children: [
+                    {
+                        index: true,
+                        element: <Navigate to='first' replace />
+                    },
                     {
                         path: 'first',
                         element: <StepFirst />
