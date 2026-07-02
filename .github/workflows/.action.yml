@@ -3,7 +3,7 @@ run-name: Running build-project
 on:
   push:
   tags:
-    - v1.*
+    - v1.0.0
 jobs:
   Build-Project:
     runs-on:  ubuntu-latest
