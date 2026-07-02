@@ -1,79 +1,139 @@
-import { 
-  RouterProvider, 
-  createBrowserRouter, 
-  Navigate 
-} from 'react-router';
-import React from 'react';
-import CartContext from './contexts/CartContext.jsx';
-import AuthLayout from './pages/auth/AuthLayout.jsx';
-import Login from './pages/auth/Login.jsx';
-import Register from './pages/auth/Register.jsx';
-import Forgot from './pages/auth/Forgot.jsx';
-import LandingPage from './pages/main/LandingPage.jsx';
-import MainLayout from './pages/main/MainLayout.jsx';
-import DetailPage from './pages/main/DetailPage.jsx';
-import CartPage from './pages/main/Cart.jsx';
+import React from 'react'
+import { createBrowserRouter, Navigate, RouterProvider } from 'react-router'
+import AuthLayout from '../src/pages/auth/AuthLayout'
+import Login from '../src/pages/auth/Login'
+import ForgotPaasword from './pages/auth/ForgotPaasword'
+import Register from '../src/pages/auth/Register'
+import MainLayout from './pages/main/MainLayout'
+import LandingPage from './pages/main/LandingPage'
+import BrowseProducts from './pages/main/toko/BrowseProducts'
+import DetailPage from './pages/main/toko/DetailPage'
+import Cart from './pages/main/Cart'
+import AddresList from './pages/main/profile/AddresList'
+import TokoLayout from './pages/main/toko/TokoLayout'
+import ProfileLayout from './pages/main/profile/ProfileLayout'
+import MyOrder from './pages/main/profile/MyOrder'
+import Wishlist from './pages/main/profile/Wishlist'
+import EditProfile from './pages/main/profile/EditProfile'
+import CheckoutLayout from './pages/main/checkout/CheckoutLayout'
+import StepFirst from './pages/main/checkout/StepFirst'
+import StepSecond from './pages/main/checkout/StepSecond'
+import StepThird from './pages/main/checkout/StepThird'
+import Succes from './pages/main/checkout/Succes'
 
 const router = createBrowserRouter([
-  {
-    path: '/auth',
-    element: <AuthLayout />,
-    children: [
-      {
-        index: true,
-        element: <Navigate to="login" replace />,
-      },
-      {
-        path: 'login',
-        element: <Login />,
-      },
-      {
-        path: 'register',
-        element: <Register />,
-      },
-      {
-        path: 'forgot-password',
-        element: <Forgot />,
-      }
-    ]
-  },
-  {
-    path: '/main',
-    element: <MainLayout />,
-    children: [
-      {
-        index: true,
-        element: <Navigate to="landing-page" replace />
-      },
-      {
-        path: 'landing-page',
-        element: <LandingPage />
-      },
-      {
-        path: 'toko/:id',
-        element: <DetailPage />
-      },
-      {
-        path: 'cart',
-        element: <CartPage />
-      }
-    ]
-  },
-  {
-    path: '*',
-    element: <Navigate to="/main/landing-page" replace />,
-  }
-]);
+    {
+        path: '/',
+        element: <Navigate to="/main" replace />
+    },
+    {
+        path: '/auth',
+        element: <AuthLayout />,
+        children: [
+            {
+                index: true,
+                element: <Navigate to='login' replace />
+            },
+            {
+                path: 'login',
+                element: <Login />
+            },
+            {
+                path: 'forgotpassword',
+                element: <ForgotPaasword />
+            },
+            {
+                path: 'register',
+                element: <Register />
+            }
+        ]
+    },
+    {
+        path: '/main',
+        element: <MainLayout />,
+        children: [
+            {
+                index: true,
+                element: <Navigate to='home' replace />
+            },
+            {
+                path: 'home',
+                element: <LandingPage />
+            },
+            {
+                path: '',
+                element: <TokoLayout />,
+                children: [
+                    {
+                        path: 'toko',
+                        element: <BrowseProducts />
+                    },
+                    {
+                        path: 'products',
+                        element: <DetailPage />
+                    }
+                ]
+            },
+            {
+                path: 'cart',
+                element: <Cart />
+            },
+            {
+                path: 'profile',
+                element: <ProfileLayout />,
+                children: [
+                    {
+                        path: 'order',
+                        element: <MyOrder />
+                    },
+                    {
+                        path: 'whislist',
+                        element: <Wishlist />
+                    },
+                    {
+                        path: 'addres',
+                        element: <AddresList />
+                    },
+                    {
+                        path: 'edit',
+                        element: <EditProfile />
+                    }
+                ]
+            },
+            {
+                path: 'checkout',
+                element: <CheckoutLayout />,
+                children: [
+                    {
+                        index: true,
+                        element: <Navigate to='first' replace />
+                    },
+                    {
+                        path: 'first',
+                        element: <StepFirst />
+                    },
+                    {
+                        path: 'second',
+                        element: <StepSecond />
+                    },
+                    {
+                        path: 'third',
+                        element: <StepThird />
+                    },
+                    {
+                        path: 'success',
+                        element: <Succes />
+                    }
+                ]
+            }
+        ]
+    }
+])
 
 function App() {
-  const [auth, setAuth] = React.useState(null);
-  const [cart, setCart] = React.useState({})
-
   return (
-    <CartContext.Provider value={{ auth, setAuth, cart, setCart }}>
-      <RouterProvider router={router} />
-    </CartContext.Provider>
-  );
+    <RouterProvider router={router}/> 
+  )
 }
 
-export default App;
+export default App

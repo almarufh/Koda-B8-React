@@ -5,7 +5,7 @@ function PathProduct(props) {
   const items = props.paths || [];
 
   return (
-    <div className="flex items-center gap-2 w-full">
+    <div className="flex items-center gap-2 w-full max-w-7xl">
       {items.map((item, index) => {
         const last = index === items.length - 1;
 

@@ -1,10 +1,10 @@
 import React from 'react'
 import { Outlet } from 'react-router'
 
-function MainLayout() {
+function CheckoutLayout() {
   return (
     <Outlet />
   )
 }
 
-export default MainLayout
+export default CheckoutLayout
